@@ -32,7 +32,6 @@ export class HeroService {
   }
 
   getHero(id: number): Observable<Hero> {
-    // TODO: send the message AFTER fetching the hero
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url)
       .pipe(
@@ -58,7 +57,7 @@ export class HeroService {
       );
   }
 
-  deleteHero(hero: Hero): Observable<any> {
+  deleteHero(hero: Hero | number): Observable<any> {
     const id = typeof hero === 'number' ? hero : hero.id;
     const url = `${this.heroesUrl}/${id}`;
     return this.http.delete<Hero>(url, httpOptions)
